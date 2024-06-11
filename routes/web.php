@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -58,6 +59,16 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerUser'])->name('register_user');
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'loginuser'])->name('login_user');
+
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin_home');
+    Route::get('/events', [AdminController::class, 'show_event_page'])->name('show_event_page');
+
+});
+
+
+
 
 
 
