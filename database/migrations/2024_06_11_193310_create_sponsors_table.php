@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
-            $table->text('description');
+            $table->string('email');
+            $table->text('phone');
+            $table->text('company_name');
+            $table->text('message');
+            $table->text('logo')->nullable();
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

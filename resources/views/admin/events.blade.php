@@ -74,44 +74,80 @@
                 </div>
                 <div class="col-md-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Uploaded Menu</h6>
+                        <h6 class="mb-4">Uploaded Event</h6>
                         <div class="table-responsive">
                             <table class="table table-dark">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Menu Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Image</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Start Time</th>
+                                    <th scope="col">End Time</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Delete</th>
+                                    <th scope="col">View</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
+                                @foreach ($events as $index => $event)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $event->title }}</td>
+                                        <td>{{ $event->start_time }}</td>
+                                        <td>{{ $event->end_time }}</td>
+                                        <td>{{ $event->location }}</td>
+                                        <td>{{ $event->type }}</td>
+                                        <td>
+                                            <a href="{{ route('delete_event',  $event->id) }}" class="btn btn-primary">Delete</a>
+                                        </td>
+                                        <td>
+                                          {{----}}  <a href="{{ url('events/' . $event->id) }}" class="btn btn-primary">View</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        @if($events->count() > 0 )
+
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($events->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $events->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($events->getUrlRange(1, $events->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $events->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($events->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $events->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+
                 </div>
+
+
             </div>
         </div>
-        <!-- Menu End -->
+
+
 
 
         <!-- Footer Start -->

@@ -21,41 +21,81 @@
 
                 <div class="col-md-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Uploaded Menu</h6>
+                        <h6 class="mb-4">All Sponsors</h6>
                         <div class="table-responsive">
                             <table class="table table-dark">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Menu Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Company Name</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Date Registered</th>
+                                    <th scope="col">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
+                                @foreach ($sponsors as $index => $sponsor)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $sponsor->name }}</td>
+                                        <td>{{ $sponsor->email }}</td>
+                                        <td>{{ $sponsor->phone }}</td>
+                                        <td>{{ $sponsor->company_name }}</td>
+                                        <td>{{ $sponsor->message }}</td>
+                                        <td>
+                                            @if ($sponsor->logo)
+                                                <img src="{{ asset('images/' . $sponsor->logo) }}" alt="Logo" width="50">
+                                            @else
+                                                No Logo
+                                            @endif
+                                        </td>
+                                        <td>{{ $sponsor->desc }}</td>
+                                        <td>{{ $sponsor->created_at->diffForHumans() }}</td>
+                                        <td>
+                                            <a href="{{ route('delete_sponsor', $sponsor->id) }}" class="btn btn-primary">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        @if($sponsors->count() > 0)
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($sponsors->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $sponsors->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($sponsors->getUrlRange(1, $sponsors->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $sponsors->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($sponsors->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $sponsors->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- Menu End -->

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Sponsor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
@@ -16,17 +18,20 @@ class AdminController extends Controller
 
     public function show_event_page()
     {
-        return view('admin.events');
+        $events = Event::paginate(5);
+        return view('admin.events', compact('events'));
     }
 
     public function all_users()
     {
-        return view('admin.users');
+        $users = User::paginate(5);
+        return view('admin.users', compact('users'));
     }
 
     public function sponsors()
     {
-        return view('admin.sponsors');
+        $sponsors = Sponsor::paginate(10); // Fetch paginated sponsors from the database
+        return view('admin.sponsors', compact('sponsors'));
     }
 
     public function gallery()
@@ -82,5 +87,27 @@ class AdminController extends Controller
         }
 
     }
+
+    public function delete_event($id)
+    {
+        $event = Event::find($id);
+
+        $event->delete();
+
+         return Redirect::back()->with('success', 'Event deleted successfully!');
+
+    }
+
+    public function delete_user($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+
+        return Redirect::back()->with('success', 'User deleted successfully!');
+
+    }
+
+
 
 }

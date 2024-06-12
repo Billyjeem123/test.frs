@@ -68,6 +68,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('sponsors');
     Route::get('/gallery', [AdminController::class, 'gallery'])->name('gallery');
     Route::post('/events', [AdminController::class, 'save_event'])->name('save_event');
+    Route::get('/delete/event/{id}', [AdminController::class, 'delete_event'])->name('delete_event');
+    Route::get('/delete/user/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
 
 });
 

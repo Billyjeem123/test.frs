@@ -21,40 +21,66 @@
 
                 <div class="col-md-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Uploaded Menu</h6>
+                        <h6 class="mb-4">All Users</h6>
                         <div class="table-responsive">
                             <table class="table table-dark">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Menu Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Date Registered</th>
+                                    <th scope="col">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
+                                @foreach ($users as $index => $user)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                                        <td>
+                                            <a href="{{ route('delete_user',  $user->id) }}" class="btn btn-primary">Delete</a>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        @if($users->count() > 0 )
+
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($users->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $users->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $users->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($users->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $users->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+
                 </div>
             </div>
         </div>
