@@ -14,6 +14,7 @@
             <a href="{{ route('ourhomepage') }}"  class="nav-item nav-link {{ request()->routeIs('ourhomepage') ? 'active' : '' }}">Home</a>
             <a href="{{route("about")}}" class="nav-item nav-link  {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
             <a href="{{route("event")}}" class="nav-item nav-link  {{ request()->routeIs('event') ? 'active' : '' }}">Event</a>
+
             <a href="{{route('sponsor')}}" class="nav-item nav-link  {{ request()->routeIs('sponsor') ? 'active' : '' }}">Become A Sponsor</a>
             <a href="{{route("blog")}}" class="nav-item nav-link {{ request()->routeIs('blog') ? 'active' : '' }}">Blog News</a>
             {{-- <a href="classes.html" class="nav-item nav-link">Contact Us</a>

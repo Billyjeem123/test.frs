@@ -15,4 +15,18 @@ class AdminController extends Controller
     {
         return view('admin.events');
     }
+
+    public function all_users()
+    {
+        return view('admin.users');
+    }
+
+    public function sponsors()
+    {
+        return view('admin.sponsors');
+    }
+
+
+
+
 }

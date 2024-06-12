@@ -17,6 +17,9 @@
         <div class="navbar-nav w-100">
             <a href="{{route('admin_home')}}" class="nav-item nav-link {{ request()->routeIs('admin_home') ? 'active' : '' }} "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <a href="{{route('show_event_page')}}" class="nav-item nav-link {{ request()->routeIs('show_event_page') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Events</a>
+            <a href="{{route('all_users')}}" class="nav-item nav-link {{ request()->routeIs('all_users') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Users</a>
+            <a href="{{route('sponsors')}}" class="nav-item nav-link {{ request()->routeIs('sponsors') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Sponsors</a>
+
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Event</a>
                 <div class="dropdown-menu bg-transparent border-0">
