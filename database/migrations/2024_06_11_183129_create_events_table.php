@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->text('start_time');
+            $table->text('end_time');
             $table->string('location');
             $table->string('type');
+            $table->string ('image');
             $table->string('age_group');
             $table->timestamps();
         });

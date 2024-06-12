@@ -19,7 +19,7 @@
         <div class="container-fluid pt-4 px-4">
             <div class="row">
                 <div class="col-md-12 col-xl-6">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('save_event') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Input Event Details</h6>
@@ -29,18 +29,15 @@
                                 <label for="title">Enter Event Title</label>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="description" name="description" placeholder="Event Description" style="height: 100px;"></textarea>
-                                <label for="description">Enter Event Description</label>
-                            </div>
+
 
                             <div class="form-floating mb-3">
-                                <input type="datetime-local" class="form-control" id="start_time" name="start_time" required>
+                                <input type="text" class="form-control" id="start_time" name="start_time" required>
                                 <label for="start_time">Start Time</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="datetime-local" class="form-control" id="end_time" name="end_time" required>
+                                <input type="text" class="form-control" id="end_time" name="end_time" required>
                                 <label for="end_time">End Time</label>
                             </div>
 
@@ -59,9 +56,20 @@
                                 <label for="age_group">Enter Age Group</label>
                             </div>
 
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="image" name="image" required>
+                                <label for="image">Upload Event Image</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="description" name="description" placeholder="Event Description" style="height: 100px;"></textarea>
+                                <label for="description">Enter Event Description</label>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+
 
                 </div>
                 <div class="col-md-12 col-xl-6">
@@ -114,7 +122,7 @@
                         &copy; <a href="#">Sweettastefd</a>, All Right Reserved.
                     </div>
                     <div class="col-12 col-sm-6 text-center text-sm-end">
-                        Designed By <a href="#">Kaykodes</a>
+                        Designed By <a href="#">Niyi</a>
                         <!-- <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a> -->
                     </div>
                 </div>
@@ -143,6 +151,28 @@
 
 <!-- Template Javascript -->
 <script src="/admin/js/main.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+PmAzLB4v5BT8aHUXElmKUHitfK3I" crossorigin="anonymous"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if(Session::has('success'))
+    toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.error("{{ Session::get('error') }}");
+    @endif
+
+</script>
+
 </body>
 
 </html>

@@ -10,5 +10,5 @@ class Sponsor extends Model
     use HasFactory;
 
     protected  $table = 'sponsors';
-    protected $fillable = [];
+    protected $guarded = [];
 }
