@@ -64,6 +64,8 @@ Route::post('/login', [AuthController::class, 'loginuser'])->name('login_user');
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin_home');
     Route::get('/events', [AdminController::class, 'show_event_page'])->name('show_event_page');
+    Route::get('/all_users', [AdminController::class, 'all_users'])->name('all_users');
+    Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('sponsors');
 
 });
 
