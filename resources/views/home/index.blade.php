@@ -48,7 +48,7 @@
                                     <h1 class="display-2 text-white animated slideInDown mb-4">Make A Brighter Future For Your Child</h1>
                                     <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
                                     <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a>
-                        
+
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 <span class="bg-primary"></span>
                             </div>
                             <div class="facility-text bg-primary">
-                                <h3 class="text-primary mb-3">School Bus</h3>
+                                <h3 class="text-primary mb-3">Facility</h3>
                                 <p class="mb-0">Eirmod sed ipsum dolor sit rebum magna erat lorem kasd vero ipsum sit</p>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                 <span class="bg-success"></span>
                             </div>
                             <div class="facility-text bg-success">
-                                <h3 class="text-success mb-3">Playground</h3>
+                                <h3 class="text-success mb-3">Facility</h3>
                                 <p class="mb-0">Eirmod sed ipsum dolor sit rebum magna erat lorem kasd vero ipsum sit</p>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <span class="bg-warning"></span>
                             </div>
                             <div class="facility-text bg-warning">
-                                <h3 class="text-warning mb-3">Healthy Canteen</h3>
+                                <h3 class="text-warning mb-3">Facility</h3>
                                 <p class="mb-0">Eirmod sed ipsum dolor sit rebum magna erat lorem kasd vero ipsum sit</p>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                                 <span class="bg-info"></span>
                             </div>
                             <div class="facility-text bg-info">
-                                <h3 class="text-info mb-3">Positive Learning</h3>
+                                <h3 class="text-info mb-3">Facility</h3>
                                 <p class="mb-0">Eirmod sed ipsum dolor sit rebum magna erat lorem kasd vero ipsum sit</p>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
 
 
 
-        
+
         <!-- Facilities Start -->
         <div class="container-xxl py-5">
             <div class="container">
@@ -250,9 +250,9 @@
         <!-- School End -->
 
 
-       
+
 <header></header>
-       
+
 
 
         <!-- Testimonial Start -->

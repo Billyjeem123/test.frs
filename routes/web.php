@@ -52,7 +52,7 @@ Route::get('/facility', function () {
 });
 
 Route::get('/test', function () {
-    return view('home.appointment');
+    return view('home.event_id');
 });
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
