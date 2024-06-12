@@ -40,7 +40,8 @@
         <div class="row g-4">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="wow fadeInUp" data-wow-delay="0.3s">
-                    <form action="/submit-sponsor" method="POST" class="bg-light p-5 rounded shadow">
+                    <form action="{{ route('submit_sponsor') }}" method="POST" class="bg-light p-5 rounded shadow">
+                        @csrf
                         <div class="mb-4">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
@@ -65,6 +66,7 @@
                             <button type="submit" class="btn btn-primary py-3 px-5">Submit</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

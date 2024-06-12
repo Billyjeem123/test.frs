@@ -19,49 +19,29 @@
         <div class="container-fluid pt-4 px-4">
             <div class="row">
                 <div class="col-md-12 col-xl-6">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Input Event Details</h6>
+                            <h6 class="mb-4">Input Gallery Details</h6>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Event Title" required>
-                                <label for="title">Enter Event Title</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
+                                <label for="title">Title</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="description" name="description" placeholder="Event Description" style="height: 100px;"></textarea>
-                                <label for="description">Enter Event Description</label>
+                                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" required>
+                                <label for="description">Description</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="datetime-local" class="form-control" id="start_time" name="start_time" required>
-                                <label for="start_time">Start Time</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="datetime-local" class="form-control" id="end_time" name="end_time" required>
-                                <label for="end_time">End Time</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="location" name="location" placeholder="Location" required>
-                                <label for="location">Enter Location</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="type" name="type" placeholder="Type of Activity" required>
-                                <label for="type">Enter Type of Activity</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="age_group" name="age_group" placeholder="Age Group" required>
-                                <label for="age_group">Enter Age Group</label>
+                                <input type="file" id="image" name="image" class="form-control" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+
 
                 </div>
                 <div class="col-md-12 col-xl-6">

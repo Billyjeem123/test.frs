@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Gallery;
 use App\Models\Sponsor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -108,6 +109,67 @@ class AdminController extends Controller
 
     }
 
+    public function delete_sponsor($id)
+    {
+        $user = Sponsor::find($id);
+
+        $user->delete();
+
+        return Redirect::back()->with('success', 'Record deleted successfully!');
+
+    }
+
+
+
+    public function submit_sponsor(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        Sponsor::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
+            'company_name' => $validatedData['company'],
+            'message' => $validatedData['message'],
+            'logo' => null,
+            'desc' => null,
+        ]);
+
+        return Redirect::back()->with('success', 'Thank you for your interest in becoming a sponsor! You will be contacted shortly');
+    }
+
+
+
+
+    public function save_gallery(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validatedData['image'] =   $this->uploadImage($request);
+        }
+
+        // Store gallery data in the database
+        Gallery::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'image' => $validatedData['image'],
+        ]);
+
+        return redirect()->back()->with('success', 'Gallery uploaded successfully!');
+
+}
 
 
 }

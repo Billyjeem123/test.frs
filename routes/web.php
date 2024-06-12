@@ -70,7 +70,9 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/events', [AdminController::class, 'save_event'])->name('save_event');
     Route::get('/delete/event/{id}', [AdminController::class, 'delete_event'])->name('delete_event');
     Route::get('/delete/user/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
-
+    Route::post('/submit-sponsor', [AdminController::class, 'submit_sponsor'])->name('submit_sponsor');
+    Route::get('/delete/sponsor/{id}', [AdminController::class, 'delete_sponsor'])->name('delete_sponsor');
+    Route::post('/gallery/store', [AdminController::class, 'save_gallery'])->name('gallery.store');
 });
 
 

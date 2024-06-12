@@ -33,7 +33,6 @@
                                     <th scope="col">Company Name</th>
                                     <th scope="col">Message</th>
                                     <th scope="col">Logo</th>
-                                    <th scope="col">Description</th>
                                     <th scope="col">Date Registered</th>
                                     <th scope="col">Delete</th>
                                 </tr>
@@ -49,12 +48,12 @@
                                         <td>{{ $sponsor->message }}</td>
                                         <td>
                                             @if ($sponsor->logo)
-                                                <img src="{{ asset('images/' . $sponsor->logo) }}" alt="Logo" width="50">
+                                                <a href="{{ asset('images/' . $sponsor->logo) }}" target="_blank" class="btn btn-primary">View Logo</a>
                                             @else
                                                 No Logo
                                             @endif
                                         </td>
-                                        <td>{{ $sponsor->desc }}</td>
+
                                         <td>{{ $sponsor->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="{{ route('delete_sponsor', $sponsor->id) }}" class="btn btn-primary">Delete</a>
