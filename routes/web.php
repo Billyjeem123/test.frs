@@ -73,6 +73,7 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/submit-sponsor', [AdminController::class, 'submit_sponsor'])->name('submit_sponsor');
     Route::get('/delete/sponsor/{id}', [AdminController::class, 'delete_sponsor'])->name('delete_sponsor');
     Route::post('/gallery/store', [AdminController::class, 'save_gallery'])->name('gallery.store');
+    Route::get('/delete/gallery/{id}', [AdminController::class, 'delete_gallery'])->name('delete_gallery');
 });
 
 

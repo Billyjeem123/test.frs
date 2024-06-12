@@ -46,41 +46,71 @@
                 </div>
                 <div class="col-md-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Uploaded Menu</h6>
+                        <h6 class="mb-4">Uploaded Galleries</h6>
                         <div class="table-responsive">
                             <table class="table table-dark">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Menu Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Description</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Rice</td>
-                                    <td>₦ 2,000</td>
-                                    <td>img.jpeg</td>
-                                </tr>
+                                @foreach ($galleries as $index => $gallery)
+                                    <tr>
+                                        <th scope="row">{{ $index + 1 }}</th>
+                                        <td>{{ $gallery->title }}</td>
+                                        <td>{{ $gallery->description }}</td>
+                                        <td>
+                                            @if ($gallery->image)
+                                                <a href="{{ asset('gallery/' . $gallery->image) }}" target="_blank" class="btn btn-primary">View Image</a>
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('delete_gallery', $gallery->id) }}" class="btn btn-primary">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        @if($galleries->count() > 0)
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($galleries->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $galleries->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($galleries->getUrlRange(1, $galleries->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $galleries->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($galleries->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $galleries->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- Menu End -->
@@ -123,6 +153,28 @@
 
 <!-- Template Javascript -->
 <script src="/admin/js/main.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+PmAzLB4v5BT8aHUXElmKUHitfK3I" crossorigin="anonymous"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if(Session::has('success'))
+    toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.error("{{ Session::get('error') }}");
+    @endif
+
+</script>
+
 </body>
 
 </html>

@@ -20,23 +20,7 @@
             <a href="{{route('all_users')}}" class="nav-item nav-link {{ request()->routeIs('all_users') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Users</a>
             <a href="{{route('sponsors')}}" class="nav-item nav-link {{ request()->routeIs('sponsors') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Sponsors</a>
             <a href="{{route('gallery')}}" class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Gallery</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Event</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="blank.html" class="dropdown-item">Upload Event</a>
-                    <a href="blank.html" class="dropdown-item">Event Listings</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Adverts</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="blank.html" class="dropdown-item">Home page</a>
-                    <a href="blank.html" class="dropdown-item">About page</a>
-                    <a href="blank.html" class="dropdown-item">Menu page</a>
-                    <a href="blank.html" class="dropdown-item">Testimonial page</a>
-                    <a href="blank.html" class="dropdown-item">Contact page</a>
-                </div>
-            </div>
+
         </div>
     </nav>
 </div>

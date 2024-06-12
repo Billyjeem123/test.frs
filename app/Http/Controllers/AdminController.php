@@ -37,7 +37,9 @@ class AdminController extends Controller
 
     public function gallery()
     {
-        return view('admin.gallery');
+        $galleries = Gallery::paginate(5);
+
+        return view('admin.gallery', ['galleries' => $galleries])   ;
     }
 
 
@@ -98,6 +100,19 @@ class AdminController extends Controller
          return Redirect::back()->with('success', 'Event deleted successfully!');
 
     }
+
+
+    public function delete_gallery($id)
+    {
+        $event = Gallery::find($id);
+
+        $event->delete();
+
+        return Redirect::back()->with('success', 'Gallery deleted successfully!');
+
+    }
+
+
 
     public function delete_user($id)
     {
