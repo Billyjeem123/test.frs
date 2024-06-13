@@ -19,7 +19,35 @@
         <div class="container-fluid pt-4 px-4">
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-12 col-xl-6">
+                    <form action="{{ route('register_admin') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Input User Details</h6>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="title" name="name" placeholder="Event Name" required>
+                                <label for="title">Enter User Name</label>
+                            </div>
+
+
+
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="email" name="email" required>
+                                <label for="end_time">Enter Email</label>
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <div class="col-md-12 col-xl-6">
                     <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">All Users</h6>
                         <div class="table-responsive">

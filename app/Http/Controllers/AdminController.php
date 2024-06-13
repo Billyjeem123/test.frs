@@ -7,6 +7,7 @@ use App\Models\Gallery;
 use App\Models\Sponsor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
@@ -110,18 +111,18 @@ class AdminController extends Controller
 
     private function uploadImage($request): ?string
     {
-        $fileUrl = null;
-
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = time() . '_' . $file->getClientOriginalName(); // Generate a unique name for the file
-            $filePath = $file->storeAs('public/uploads', $fileName);
+            $file->storeAs('public/uploads', $fileName);
             $fileUrl = asset('storage/uploads/' . $fileName);
 
-            return  $fileUrl;
+            return $fileUrl;
         }
 
+        return null;
     }
+
 
     public function delete_event($id)
     {
@@ -217,6 +218,31 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Gallery uploaded successfully!');
 
 }
+
+    public function register_admin(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Check if the email already exists
+        if (User::where('email', $request->email)->exists()) {
+            return redirect()->back()->with('error', 'Email already exists.');
+        }
+
+        // Create the new admin user
+        User::create([
+            'email' => $request->email,
+            'password' => bcrypt('admin123'), // Ensure password is hashed
+            'name' => $request->name,
+            'role' => 'admin',
+        ]);
+
+        return redirect()->back()->with('success', 'User added successfully');
+    }
+
 
 
 }

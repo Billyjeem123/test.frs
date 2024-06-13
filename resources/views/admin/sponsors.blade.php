@@ -33,7 +33,8 @@
                                     <th scope="col">Company Name</th>
                                     <th scope="col">Message</th>
                                     <th scope="col">Logo</th>
-                                    <th scope="col">Date Registered</th>
+                                    <th scope="col">Accepted status</th>
+                                    <th scope="col">Date Applied</th>
                                     <th scope="col">Delete</th>
                                     <th scope="col">Approve</th>
                                 </tr>
@@ -49,11 +50,13 @@
                                         <td>{{ $sponsor->message }}</td>
                                         <td>
                                             @if ($sponsor->logo)
-                                                <a href="{{ asset('images/' . $sponsor->logo) }}" target="_blank" class="btn btn-primary">View Logo</a>
+                                                <a href="{{ asset('images/' . $sponsor->logo) }}" target="_blank" class="btn btn-primary">View</a>
                                             @else
                                                 No Logo
                                             @endif
                                         </td>
+
+                                        <td>{{ $sponsor->accepted  === 1 ? "Yes" : "No"}}</td>
 
                                         <td>{{ $sponsor->created_at->diffForHumans() }}</td>
                                         <td>

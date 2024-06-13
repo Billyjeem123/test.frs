@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -50,8 +50,8 @@ class AuthController extends Controller
 
     public function registerUser(Request $request){
 
-       
-      $user =   User::create(["email"=> $request->email,"password"=> $request->password, 'name' => $request->name]);
+
+      $user =   User::create(["email"=> $request->email,"password"=> $request->password, 'name' => $request->name, "role"=> 'user']);
 
       Auth::login($user);
 

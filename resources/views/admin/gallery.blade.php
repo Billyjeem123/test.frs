@@ -66,7 +66,7 @@
                                         <td>{{ $gallery->description }}</td>
                                         <td>
                                             @if ($gallery->image)
-                                                <a href="{{ asset('gallery/' . $gallery->image) }}" target="_blank" class="btn btn-primary">View Image</a>
+                                                <a href="{{$gallery->image }}" target="_blank" class="btn btn-primary">View Image</a>
                                             @else
                                                 No Image
                                             @endif
