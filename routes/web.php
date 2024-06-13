@@ -22,9 +22,7 @@ Route::get('/about', function () {
     return view('home.about');
 })->name('about');
 
-Route::get('/event', function () {
-    return view('home.event');
-})->name('event');
+
 
 Route::get('/blog', function () {
     return view('home.blog');
@@ -53,6 +51,9 @@ Route::get('/facility', function () {
 Route::get('/test', function () {
     return view('home.event_id');
 });
+Route::get('/event', [HomeController::class, 'event'])->name('event');
+
+
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerUser'])->name('register_user');

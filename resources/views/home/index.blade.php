@@ -202,7 +202,7 @@
         <!-- Facilities Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <div class="text-center mx-auto mb-5 wow " data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Our Sponsors</h1>
                     <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
                 </div>
@@ -220,6 +220,50 @@
                                 <p class="mb-0">Eirmod sed ipsum dolor sit rebum magna erat lorem kasd vero ipsum sit</p>
                             </div>
                         </div>
+                    </div>
+
+
+
+
+
+                    <div class="row g-4">
+                        @foreach($galleries as $gallery)
+                            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="gallery-item">
+                                    <img src="{{ asset($gallery->image) }}" alt="Gallery Image" class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+                        @endforeach
+                        <br> <br>
+                        @if($galleries->/count() > 0 )
+
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center " style="margin-top: 30px">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($galleries->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $galleries->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($galleries->getUrlRange(1, $galleries->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $galleries->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($galleries->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $galleries->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
 
