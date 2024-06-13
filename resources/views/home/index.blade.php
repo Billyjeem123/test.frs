@@ -136,34 +136,49 @@
             <h1 class="mb-3">Gallery</h1>
             <p>Explore the vibrant moments and engaging activities at our centers through our gallery.</p>
         </div>
+
         <div class="row g-4">
-            <!-- Gallery Item 1 -->
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="gallery-item">
-                    <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 1" class="img-fluid rounded">
+            @foreach($galleries as $gallery)
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="gallery-item">
+                        <img src="{{ asset($gallery->image) }}" alt="Gallery Image" class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover; object-position: center;">
+                    </div>
                 </div>
-            </div>
-            <!-- Gallery Item 2 -->
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="gallery-item">
-                    <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 2" class="img-fluid rounded">
-                </div>
-            </div>
-            <!-- Gallery Item 3 -->
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="gallery-item">
-                    <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 3" class="img-fluid rounded">
-                </div>
-            </div>
-            <!-- Gallery Item 4 -->
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="gallery-item">
-                    <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 4" class="img-fluid rounded">
-                </div>
-            </div>
-            <!-- Additional Gallery Items -->
-            <!-- Add more .col-lg-3 .col-sm-6 blocks for more images as needed -->
+            @endforeach
+                <br> <br>
+                @if($galleries->count() > 0 )
+
+                    <!-- Pagination Section -->
+                    <div class="pagination-section">
+                        <div class="d-flex justify-content-center " style="margin-top: 30px">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center flex-wrap">
+                                    @if ($galleries->onFirstPage())
+                                        <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                    @else
+                                        <li class="page-item"><a class="page-link" href="{{ $galleries->previousPageUrl() }}">Prev</a></li>
+                                    @endif
+
+                                    @foreach ($galleries->getUrlRange(1, $galleries->lastPage()) as $page => $url)
+                                        <li class="page-item {{ ($page == $galleries->currentPage()) ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
+
+                                    @if ($galleries->hasMorePages())
+                                        <li class="page-item"><a class="page-link" href="{{ $galleries->nextPageUrl() }}">Next</a></li>
+                                    @else
+                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                @endif
         </div>
+
+
+
     </div>
 </div>
 <!-- Facilities (Gallery) End -->

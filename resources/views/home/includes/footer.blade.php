@@ -112,7 +112,6 @@
      @if(Session::has('error'))
      toastr.error("{{ Session::get('error') }}");
      @endif
-     toastr.error("jjjjj");
 
  </script>
 
