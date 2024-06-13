@@ -58,4 +58,17 @@ class AuthController extends Controller
 
        return redirect()->route('ourhomepage');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        // Optionally invalidate the session
+        $request->session()->invalidate();
+
+        // Regenerate the session to prevent session fixation
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'Logged out successfully');
+    }
 }

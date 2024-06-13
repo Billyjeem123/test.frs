@@ -15,8 +15,51 @@ class AdminController extends Controller
 {
     public function index(){
 
-        return view('admin.index');
+
+         $users = User::all()->count();
+        $event = Event::all()->count();
+        $sponsors = Sponsor::all()->count();
+        $galleries = Gallery::all()->count();
+        return view('admin.index', compact('users', 'event', 'sponsors', 'galleries'));
     }
+
+    public function login(){
+
+        return view('admin.login');
+    }
+
+
+    public function login_admin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        // Validate the login form data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        // Attempt to log the user in
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            $user = Auth::user();
+
+            // Check if the authenticated user has the admin role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin_home')->with('success', 'Logged in successfully');
+            } else {
+                // Log the user out if they are not an admin
+                Auth::logout();
+                return redirect()->back()->with('error', 'Access denied. Admins only.');
+            }
+        } else {
+            // Authentication failed...
+            return redirect()->back()->with('error', 'Invalid credentials');
+        }
+    }
+
+
+
 
     public function show_event_page()
     {

@@ -61,11 +61,17 @@ Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'loginuser'])->name('login_user');
 
 
-Route::prefix('dashboard')->group(function () {
+Route::get('/dashboard/login', [AdminController::class, 'login'])->name('login');
+Route::post('/login', [AdminController::class, 'login_admin'])->name('login_admin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin_home');
     Route::get('/events', [AdminController::class, 'show_event_page'])->name('show_event_page');
     Route::get('/all_users', [AdminController::class, 'all_users'])->name('all_users');
     Route::post('/register_admin', [AdminController::class, 'register_admin'])->name('register_admin');
+
     Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('sponsors');
     Route::get('/gallery', [AdminController::class, 'gallery'])->name('gallery');
     Route::post('/events', [AdminController::class, 'save_event'])->name('save_event');

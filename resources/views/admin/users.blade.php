@@ -34,7 +34,7 @@
 
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" required>
                                 <label for="end_time">Enter Email</label>
                             </div>
 
@@ -57,6 +57,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">Date Registered</th>
                                     <th scope="col">Delete</th>
                                 </tr>
@@ -67,6 +68,7 @@
                                         <th scope="row">{{ $index + 1 }}</th>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role }}</td>
                                         <td>{{ $user->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="{{ route('delete_user',  $user->id) }}" class="btn btn-primary">Delete</a>
@@ -152,6 +154,28 @@
 
 <!-- Template Javascript -->
 <script src="/admin/js/main.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+PmAzLB4v5BT8aHUXElmKUHitfK3I" crossorigin="anonymous"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if(Session::has('success'))
+    toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.error("{{ Session::get('error') }}");
+    @endif
+
+</script>
+
 </body>
 
 </html>
