@@ -35,6 +35,7 @@
                                     <th scope="col">Logo</th>
                                     <th scope="col">Date Registered</th>
                                     <th scope="col">Delete</th>
+                                    <th scope="col">Approve</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +58,10 @@
                                         <td>{{ $sponsor->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="{{ route('delete_sponsor', $sponsor->id) }}" class="btn btn-primary">Delete</a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ route('show_sponsor_page', $sponsor->id) }}" class="btn btn-primary">Approve</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -23,6 +23,13 @@ class AdminController extends Controller
         return view('admin.events', compact('events'));
     }
 
+
+    public function show_sponsor_page($id)
+    {
+        $sponsor = Sponsor::find($id);
+        return view('admin.approve-sponsor', compact('sponsor', 'id'));
+    }
+
     public function all_users()
     {
         $users = User::paginate(5);
@@ -40,6 +47,31 @@ class AdminController extends Controller
         $galleries = Gallery::paginate(5);
 
         return view('admin.gallery', ['galleries' => $galleries])   ;
+    }
+
+
+    public function approve_sponsor(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:sponsors,id',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Find the sponsor by ID
+        $sponsor = Sponsor::find($request->id);
+
+        // Handle file upload if a new logo is provided
+        if ($request->hasFile('logo')) {
+            $logoName = time() . '.' . $request->logo->extension();
+            $request->logo->move(public_path('images'), $logoName);
+            $sponsor->logo = $logoName;
+        }
+
+        // Update the sponsor's approval status
+        $sponsor->accepted = 1;
+        $sponsor->save();
+
+        return Redirect::back()->with('success', 'Sponsor approved successfully!');
     }
 
 
