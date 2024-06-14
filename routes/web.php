@@ -85,6 +85,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/delete/gallery/{id}', [AdminController::class, 'delete_gallery'])->name('delete_gallery');
     Route::get('/approve-sponsor/{id}', [AdminController::class, 'show_sponsor_page'])->name('show_sponsor_page');
     Route::post('/approve-sponsor', [AdminController::class, 'approve_sponsor'])->name('approve_sponsor');
+
+    Route::get('/blog', [AdminController::class, 'blog'])->name('blog');
 });
 
 

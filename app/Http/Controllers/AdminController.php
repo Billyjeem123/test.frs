@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Sponsor;
@@ -116,6 +117,14 @@ class AdminController extends Controller
         $sponsor->save();
 
         return Redirect::route('sponsors')->with('success', 'Sponsor approved successfully!');
+    }
+
+    public function blog()
+    {
+        $blogs = Blog::paginate(5);
+
+        return view('admin.blog', ['blogs' => $blogs])   ;
+
     }
 
 

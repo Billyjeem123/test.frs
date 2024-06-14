@@ -20,6 +20,7 @@
             <a href="{{route('all_users')}}" class="nav-item nav-link {{ request()->routeIs('all_users') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Users</a>
             <a href="{{route('sponsors')}}" class="nav-item nav-link {{ request()->routeIs('sponsors') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Sponsors</a>
             <a href="{{route('gallery')}}" class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Gallery</a>
+            <a href="{{route('blog')}}" class="nav-item nav-link {{ request()->routeIs('blog') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Blog</a>
 
         </div>
     </nav>
