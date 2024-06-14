@@ -20,22 +20,25 @@
             <div class="row">
 
                 <div class="col-md-12 col-xl-6">
-                    <form action="{{ route('register_admin') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('save_blog') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Input User Details</h6>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="title" name="name" placeholder="Event Name" required>
-                                <label for="title">Enter User Name</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Event Name" required>
+                                <label for="title">Enter Blog Title</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="image" name="image" required>
+                                <label for="image">Upload Blog Image</label>
                             </div>
 
 
-
-
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="email" name="email" required>
-                                <label for="end_time">Enter Email</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="Event Description" style="height: 100px;"></textarea>
+                                <label for="description">Enter Blog Description</label>
                             </div>
 
 
@@ -55,23 +58,27 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Date Registered</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Date Created</th>
                                     <th scope="col">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $index => $user)
+                                @foreach ($blogs as $index => $blog)
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
-                                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                                        <td>{{ $blog->title }}</td>
                                         <td>
-                                            <a href="{{ route('delete_user',  $user->id) }}" class="btn btn-primary">Delete</a>
+                                            @if ($blog->image)
+                                                <a href="{{$blog->image }}" target="_blank" class="btn btn-primary">View Image</a>
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
+                                        <td>{{ $blog->created_at->diffForHumans() }}</td>
+                                        <td>
+                                            <a href="{{ route('delete_user',  $blog->id) }}" class="btn btn-primary">Delete</a>
                                         </td>
 
                                     </tr>
@@ -80,27 +87,27 @@
                             </table>
                         </div>
 
-                        @if($users->count() > 0 )
+                        @if($blogs->count() > 0 )
 
                             <!-- Pagination Section -->
                             <div class="pagination-section">
                                 <div class="d-flex justify-content-center">
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination justify-content-center flex-wrap">
-                                            @if ($users->onFirstPage())
+                                            @if ($blogs->onFirstPage())
                                                 <li class="page-item disabled"><span class="page-link">Prev</span></li>
                                             @else
-                                                <li class="page-item"><a class="page-link" href="{{ $users->previousPageUrl() }}">Prev</a></li>
+                                                <li class="page-item"><a class="page-link" href="{{ $blogs->previousPageUrl() }}">Prev</a></li>
                                             @endif
 
-                                            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
-                                                <li class="page-item {{ ($page == $users->currentPage()) ? 'active' : '' }}">
+                                            @foreach ($blogs->getUrlRange(1, $blogs->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $blogs->currentPage()) ? 'active' : '' }}">
                                                     <a class="page-link" href="{{ $url }}">{{ $page }}</a>
                                                 </li>
                                             @endforeach
 
-                                            @if ($users->hasMorePages())
-                                                <li class="page-item"><a class="page-link" href="{{ $users->nextPageUrl() }}">Next</a></li>
+                                            @if ($blogs->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $blogs->nextPageUrl() }}">Next</a></li>
                                             @else
                                                 <li class="page-item disabled"><span class="page-link">Next</span></li>
                                             @endif

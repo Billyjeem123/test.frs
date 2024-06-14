@@ -87,6 +87,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/approve-sponsor', [AdminController::class, 'approve_sponsor'])->name('approve_sponsor');
 
     Route::get('/blog', [AdminController::class, 'blog'])->name('blog');
+    Route::post('/blog', [AdminController::class, 'save_blog'])->name('save_blog');
 });
 
 

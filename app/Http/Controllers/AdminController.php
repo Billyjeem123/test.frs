@@ -161,6 +161,34 @@ class AdminController extends Controller
     }
 
 
+
+    public function save_blog(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            // Handle file upload
+            if ($request->hasFile('image')) {
+                $validatedData['image'] =   $this->uploadImage($request);
+            }
+
+            Blog::create($validatedData);
+
+            return Redirect::back()->with('success', 'Blog created successfully!');
+        } catch (ValidationException $e) {
+            $errors = $e->validator->errors();
+            $firstError = $errors->all()[0]; // Get the first validation error
+            return Redirect::back()->with('error', $firstError);
+        }
+
+
+    }
+
+
     private function uploadImage($request): ?string
     {
         if ($request->hasFile('image')) {
