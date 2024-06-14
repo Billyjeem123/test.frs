@@ -11,36 +11,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar Start -->
-        <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-            <a href="index.html" class="navbar-brand">
-                <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i>Kider</h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="classes.html" class="nav-item nav-link">Classes</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 rounded-bottom border-0 m-0">
-                            <a href="facility.html" class="dropdown-item">School Facilities</a>
-                            <a href="team.html" class="dropdown-item">Popular Teachers</a>
-                            <a href="call-to-action.html" class="dropdown-item">Become A Teachers</a>
-                            <a href="appointment.html" class="dropdown-item">Make Appointment</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link active">Contact Us</a>
-                </div>
-                <a href="" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Join Us<i class="fa fa-arrow-right ms-3"></i></a>
-            </div>
-        </nav>
-        <!-- Navbar End -->
+        @include('home.includes.nav')
 
 
         <!-- Page Header End -->
@@ -89,32 +60,33 @@
                 </div>
                 <div class="bg-light rounded">
                     <div class="row g-0">
+
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
-                                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                                <form>
+                                <form method="POST" action="{{ route('contact.send') }}">
+                                    @csrf
                                     <div class="row g-3">
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                                                <input type="text" class="form-control border-0" id="name" name="name" placeholder="Your Name" required>
                                                 <label for="name">Your Name</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
+                                                <input type="email" class="form-control border-0" id="email" name="email" placeholder="Your Email" required>
                                                 <label for="email">Your Email</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
+                                                <input type="text" class="form-control border-0" id="subject" name="subject" placeholder="Subject" required>
                                                 <label for="subject">Subject</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" name="message" style="height: 100px" required></textarea>
                                                 <label for="message">Message</label>
                                             </div>
                                         </div>
@@ -125,6 +97,7 @@
                                 </form>
                             </div>
                         </div>
+
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
                             <div class="position-relative h-100">
                                 <iframe class="position-relative rounded w-100 h-100"

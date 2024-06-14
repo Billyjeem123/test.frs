@@ -31,7 +31,6 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Company Name</th>
-                                    <th scope="col">Message</th>
                                     <th scope="col">Logo</th>
                                     <th scope="col">Accepted status</th>
                                     <th scope="col">Date Applied</th>
@@ -47,7 +46,6 @@
                                         <td>{{ $sponsor->email }}</td>
                                         <td>{{ $sponsor->phone }}</td>
                                         <td>{{ $sponsor->company_name }}</td>
-                                        <td>{{ $sponsor->message }}</td>
                                         <td>
                                             @if ($sponsor->logo)
                                                 <a href="{{ asset('images/' . $sponsor->logo) }}" target="_blank" class="btn btn-primary">View</a>

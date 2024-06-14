@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,28 @@ class HomeController extends Controller
         $events = Event::paginate(10);
 
         return view('home.event', compact('events'));
+    }
+
+
+        public function send_contact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:1000',
+        ]);
+
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ];
+
+        Mail::to('your-email@example.com')->send(new ContactMail($details));
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 
 

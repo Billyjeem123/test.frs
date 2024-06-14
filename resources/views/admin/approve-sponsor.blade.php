@@ -58,6 +58,11 @@
                                 <label for="image">Sponsor Logo</label>
                             </div>
 
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" value="{{$sponsor->message}}" name="message" required>
+                                <label for="start_time">Company Description</label>
+                            </div>
+
 
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

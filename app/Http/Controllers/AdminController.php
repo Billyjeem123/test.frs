@@ -115,7 +115,7 @@ class AdminController extends Controller
         $sponsor->accepted = 1;
         $sponsor->save();
 
-        return Redirect::back()->with('success', 'Sponsor approved successfully!');
+        return Redirect::route('sponsors')->with('success', 'Sponsor approved successfully!');
     }
 
 

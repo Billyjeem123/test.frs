@@ -42,7 +42,9 @@ Route::get('/classes', function () {
 
 Route::get('/contact', function () {
     return view('home.contact');
-});
+})->name('contact');
+
+Route::post('/contact', [HomeController::class, 'send_contact'])->name('contact.send');
 
 Route::get('/facility', function () {
     return view('home.facility');
