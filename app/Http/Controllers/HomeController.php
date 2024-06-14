@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Sponsor;
+use App\Notifications\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -42,7 +43,7 @@ class HomeController extends Controller
             'message' => $request->message,
         ];
 
-        Mail::to('your-email@example.com')->send(new ContactMail($details));
+        Mail::to(env('APP_MAIL'))->send(new ContactMail($details));
 
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
