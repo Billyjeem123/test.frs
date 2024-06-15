@@ -24,9 +24,6 @@ Route::get('/about', function () {
 
 
 
-Route::get('/blog', function () {
-    return view('home.blog');
-})->name('blog');
 
 
 Route::get('/sponsor', function () {
@@ -54,6 +51,7 @@ Route::get('/test', function () {
     return view('home.event_id');
 });
 Route::get('/event', [HomeController::class, 'event'])->name('event');
+Route::get('/blog', [HomeController::class, 'all_blogs'])->name('blog');
 
 
 
@@ -88,6 +86,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/blog', [AdminController::class, 'blog'])->name('blog');
     Route::post('/blog', [AdminController::class, 'save_blog'])->name('save_blog');
+    Route::get('/delete/blog/{id}', [AdminController::class, 'delete_blog'])->name('delete_blog');
 });
 
 

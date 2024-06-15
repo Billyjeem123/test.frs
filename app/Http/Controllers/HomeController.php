@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Sponsor;
@@ -24,6 +25,13 @@ class HomeController extends Controller
         $events = Event::paginate(10);
 
         return view('home.event', compact('events'));
+    }
+
+    public function all_blogs(){
+
+        $blogs = Blog::paginate(10);
+
+        return view('home.blog', compact('blogs'));
     }
 
 

@@ -78,7 +78,7 @@
                                         </td>
                                         <td>{{ $blog->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <a href="{{ route('delete_user',  $blog->id) }}" class="btn btn-primary">Delete</a>
+                                            <a href="{{ route('delete_blog',  $blog->id) }}" class="btn btn-primary">Delete</a>
                                         </td>
 
                                     </tr>

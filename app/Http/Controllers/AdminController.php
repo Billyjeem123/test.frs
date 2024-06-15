@@ -225,6 +225,16 @@ class AdminController extends Controller
 
     }
 
+    public function delete_blog($id)
+    {
+        $event = Blog::find($id);
+
+        $event->delete();
+
+        return Redirect::back()->with('success', 'Blog deleted successfully!');
+
+    }
+
 
 
     public function delete_user($id)

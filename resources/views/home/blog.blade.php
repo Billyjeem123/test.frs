@@ -38,32 +38,45 @@
                     <p>Know what is trending in our community.</p>
                 </div>
                 <div class="row g-4">
-                    <!-- Gallery Item 1 -->
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="gallery-item">
-                            <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 1" class="img-fluid rounded">
+                    @foreach($blogs as $gallery)
+                        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="gallery-item">
+                               <a href="">
+                                   <img src="{{ asset($gallery->image) }}" alt="Gallery Image" class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover; object-position: center;">
+                               </a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Gallery Item 2 -->
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="gallery-item">
-                            <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 2" class="img-fluid rounded">
-                        </div>
-                    </div>
-                    <!-- Gallery Item 3 -->
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="gallery-item">
-                            <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 3" class="img-fluid rounded">
-                        </div>
-                    </div>
-                    <!-- Gallery Item 4 -->
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="gallery-item">
-                            <img src="/assets/img/carousel-1.jpg" alt="Gallery Image 4" class="img-fluid rounded">
-                        </div>
-                    </div>
-                    <!-- Additional Gallery Items -->
-                    <!-- Add more .col-lg-3 .col-sm-6 blocks for more images as needed -->
+                    @endforeach
+                        <br> <br>
+                        @if($blogs->count() > 0 )
+
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="d-flex justify-content-center " style="margin-top: 30px">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            @if ($blogs->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $blogs->previousPageUrl() }}">Prev</a></li>
+                                            @endif
+
+                                            @foreach ($blogs->getUrlRange(1, $blogs->lastPage()) as $page => $url)
+                                                <li class="page-item {{ ($page == $blogs->currentPage()) ? 'active' : '' }}">
+                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            @if ($blogs->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $blogs->nextPageUrl() }}">Next</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endif
                 </div>
             </div>
         </div>
