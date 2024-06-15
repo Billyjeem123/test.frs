@@ -51,7 +51,7 @@ Route::get('/test', function () {
     return view('home.event_id');
 });
 Route::get('/event', [HomeController::class, 'event'])->name('event');
-Route::get('/blog', [HomeController::class, 'all_blogs'])->name('blog');
+Route::get('/blog', [HomeController::class, 'all_blogs'])->name('blog_home');
 
 
 

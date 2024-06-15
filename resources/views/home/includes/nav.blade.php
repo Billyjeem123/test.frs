@@ -16,7 +16,7 @@
             <a href="{{route("event")}}" class="nav-item nav-link  {{ request()->routeIs('event') ? 'active' : '' }}">Event</a>
 
             <a href="{{route('sponsor')}}" class="nav-item nav-link  {{ request()->routeIs('sponsor') ? 'active' : '' }}">Become A Sponsor</a>
-            <a href="{{route("blog")}}" class="nav-item nav-link {{ request()->routeIs('blog') ? 'active' : '' }}">Blog News</a>
+            <a href="{{route("blog_home")}}" class="nav-item nav-link {{ request()->routeIs('blog_home') ? 'active' : '' }}">Blog News</a>
              <a href="{{route("contact")}}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }} ">Contact Us</a>
            {{-- <a href="classes.html" class="nav-item nav-link">Contact Us</a>
            <div class="nav-item dropdown">

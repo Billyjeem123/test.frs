@@ -47,13 +47,29 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="type" name="type" placeholder="Type of Activity" required>
-                                <label for="type">Enter Type of Activity</label>
+                                <select name="type" class="form-control" style="background-color: #000">
+                                    <option selected>Choose Activity Type</option>
+                                    <option >Play Session</option>
+                                    <option>Play Session</option>
+                                    <option>Recreatiing and Learning</option>
+                                    <option>Health & Wellness</option>
+                                    <option>Music & Movement</option>
+                                    <option>Playtime</option>
+
+                                </select>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="age_group" name="age_group" placeholder="Age Group" required>
-                                <label for="age_group">Enter Age Group</label>
+                                <select name="age_group" class="form-control" style="background-color: #000">
+                                    <option selected>Choose Age Group</option>
+                                    <option >0-3 years</option>
+                                    <option>3-6 years</option>
+                                    <option>1-6 years</option>
+                                    <option>0-2 years</option>
+                                    <option>3-5 years</option>
+                                    <option>2-4 years</option>
+
+                                </select>
                             </div>
 
                             <div class="form-floating mb-3">
