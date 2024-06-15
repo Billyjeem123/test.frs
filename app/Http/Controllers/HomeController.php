@@ -20,10 +20,30 @@ class HomeController extends Controller
         return view('home.index', compact('galleries', 'sponsors'));
     }
 
-    public function event(){
+    public function event(Request $request){
 
-        $events = Event::paginate(10);
+        $query = Event::query();
 
+        // Filter by location if filter_location parameter is present
+        if ($request->filled('filter_location')) {
+            $location = urldecode($request->input('filter_location'));
+            $query->where('location', 'like', '%' . $location . '%');
+        }
+
+        // Filter by activity type if filter_type parameter is present
+        if ($request->filled('filter_type')) {
+            $query->where('type', $request->input('filter_type'));
+        }
+
+        // Filter by age group if filter_age_group parameter is present
+        if ($request->filled('filter_age_group')) {
+            $query->where('age_group', $request->input('filter_age_group'));
+        }
+
+        // Fetch the blogs with pagination
+        $events = $query->paginate(10);
+
+        // Return the view with the filtered or unfiltered blogs
         return view('home.event', compact('events'));
     }
 

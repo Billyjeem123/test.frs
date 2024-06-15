@@ -36,23 +36,44 @@
             </div>
 
             <!-- Filters Start -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="filter_location" name="filter_location" placeholder="Filter by Location">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="filter_type" name="filter_type" placeholder="Filter by Type of Activity">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="filter_age_group" name="filter_age_group" placeholder="Filter by Age Group">
-                </div>
+            <d<div class="row mb-4">
+                <form action="{{ route('event') }}" method="GET" class="w-100">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="filter_location" name="filter_location" placeholder="Filter by Location" value="{{ request('filter_location') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <select id="filter_type" name="filter_type" class="form-control">
+                                <option selected disabled>Choose Activity Type</option>
+                                <option {{ request('filter_type') == 'Play Session' ? 'selected' : '' }}>Play Session</option>
+                                <option {{ request('filter_type') == 'Recreatiing and Learning' ? 'selected' : '' }}>Recreatiing and Learning</option>
+                                <option {{ request('filter_type') == 'Health & Wellness' ? 'selected' : '' }}>Health & Wellness</option>
+                                <option {{ request('filter_type') == 'Music & Movement' ? 'selected' : '' }}>Music & Movement</option>
+                                <option {{ request('filter_type') == 'Playtime' ? 'selected' : '' }}>Playtime</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="filter_age_group" name="filter_age_group" class="form-control">
+                                <option selected disabled>Choose Age Group</option>
+                                <option {{ request('filter_age_group') == '0-3 years' ? 'selected' : '' }}>0-3 years</option>
+                                <option {{ request('filter_age_group') == '3-6 years' ? 'selected' : '' }}>3-6 years</option>
+                                <option {{ request('filter_age_group') == '1-6 years' ? 'selected' : '' }}>1-6 years</option>
+                                <option {{ request('filter_age_group') == '0-2 years' ? 'selected' : '' }}>0-2 years</option>
+                                <option {{ request('filter_age_group') == '3-5 years' ? 'selected' : '' }}>3-5 years</option>
+                                <option {{ request('filter_age_group') == '2-4 years' ? 'selected' : '' }}>2-4 years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row mt-3">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row mb-4">
-                <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
-                </div>
-            </div>
-            <!-- Filters End -->
+
+
 
             <div class="row g-4" id="events-container">
                 @foreach($events as $event)
