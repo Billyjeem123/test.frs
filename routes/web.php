@@ -66,7 +66,7 @@ Route::post('/login', [AdminController::class, 'login_admin'])->name('login_admi
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+Route::prefix('dashboard')->middleware(['admin.auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin_home');
     Route::get('/events', [AdminController::class, 'show_event_page'])->name('show_event_page');
     Route::get('/all_users', [AdminController::class, 'all_users'])->name('all_users');

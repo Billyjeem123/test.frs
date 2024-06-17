@@ -73,8 +73,6 @@
                 </form>
             </div>
 
-
-
             <div class="row g-4" id="events-container">
                 @foreach($events as $event)
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
